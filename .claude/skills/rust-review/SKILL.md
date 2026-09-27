@@ -1,6 +1,8 @@
 ---
 name: review
 description: レビュー用 skill
+context: fork
+agent: reviewer
 ---
 
 ## 手順
