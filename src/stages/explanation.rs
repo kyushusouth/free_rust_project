@@ -18,9 +18,8 @@ mod tests {
     use crate::request::{Condition, Location};
     use chrono::Utc;
 
-    #[test]
-    fn annotate_returns_empty_vec_unchanged() {
-        let request = Request {
+    fn dummy_request() -> Request {
+        Request {
             request_number: 0,
             user_name: "Alice".to_string(),
             query: "query".to_string(),
@@ -30,7 +29,12 @@ mod tests {
             },
             time: Utc::now(),
             condition: Condition::Sunny,
-        };
+        }
+    }
+
+    #[test]
+    fn annotate_returns_empty_vec_unchanged() {
+        let request = dummy_request();
         let actual = annotate(&request, vec![]);
 
         assert!(actual.is_empty());
@@ -38,17 +42,7 @@ mod tests {
 
     #[test]
     fn annotate_sets_explanation_for_each_item() {
-        let request = Request {
-            request_number: 0,
-            user_name: "Alice".to_string(),
-            query: "query".to_string(),
-            location: Location {
-                latitude: 0.0,
-                longitude: 0.0,
-            },
-            time: Utc::now(),
-            condition: Condition::Sunny,
-        };
+        let request = dummy_request();
         let items = vec![
             Item {
                 id: "1".to_string(),

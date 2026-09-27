@@ -10,7 +10,7 @@ pub fn item(id: &str, name: &str, score: f64) -> Item {
     }
 }
 
-/// クエリに基づいてアイテムを検索する(1st stage)
+/// request_number に応じて固定の候補を返す(1st stage)
 pub fn search(request: &Request) -> Vec<Item> {
     // 実際にはインデックスやDBへの問い合わせ処理などが入る
     match request.request_number {
