@@ -1,6 +1,6 @@
 use crate::request::Request;
 use crate::response::Response;
-use crate::stages::{retrieval, reranking, explanation};
+use crate::stages::{explanation, reranking, retrieval};
 
 pub fn run(request: &Request) -> Response {
     let items = retrieval::search(request);
