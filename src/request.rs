@@ -16,6 +16,7 @@ pub enum Condition {
 
 #[derive(Debug)]
 pub struct Request {
+    pub request_number: u32,
     pub user_name: String,
     pub query: String,
     pub location: Location,
