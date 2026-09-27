@@ -22,3 +22,10 @@ explanation
 - items に推薦文をつけられるかのチェック
 
 ## 結合テスト
+
+`pipeline::run` を対象に、3ステージ(retrieval → reranking → explanation)を通しで実行した結果を検証する。
+
+- request_number = 1 のときに、`Response.items` が score 降順(id: "1", "2")に並び、かつ全アイテムに `explanation`(`"{user_name} さんの検索意図に合致するため推薦されました"`)が設定されていることのチェック
+- request_number = 2 のときに、`Response.items` が score 降順(id: "3", "5", "4")に並び、かつ全アイテムに `explanation` が設定されていることのチェック
+- request_number = 3(該当なし)のときに、`Response.items` が空であることのチェック
+- `user_name` を変更したときに、`explanation` の文言にその `user_name` が反映されることのチェック(reranking の結果が explanation に正しく引き継がれることの確認)
