@@ -3,9 +3,14 @@ use crate::request::Request;
 
 /// 検索結果を並び替える(2nd stage)
 pub fn rerank(_request: &Request, mut items: Vec<Item>) -> Vec<Item> {
-    // 実際には機械学習モデルによるスコアリングなどが入る
+    // items を可変で所有権ごと受け取り、所有権を呼び出し元に返す実装
     items.sort_by(|a, b| b.score.partial_cmp(&a.score).unwrap());
     items
+}
+
+pub fn rerank_ref(_request: &Request, items: &mut Vec<Item>) {
+    // items を可変参照で受け取り、変更のみ行う実装
+    items.sort_by(|a, b| b.score.partial_cmp(&a.score).unwrap());
 }
 
 #[cfg(test)]

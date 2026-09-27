@@ -1,10 +1,11 @@
+// バイナリクレート
 use chrono::Utc;
 use free::pipeline;
 use free::request::{Condition, Location, Request};
 
 fn main() {
     let request = Request {
-        request_number: 1,
+        request_number: 2,
         user_name: "Alice".to_string(),
         query: "美味しいラーメン".to_string(),
         location: Location {
@@ -16,5 +17,7 @@ fn main() {
     };
 
     let response = pipeline::run(&request);
-    println!("{:#?}", response);
+
+    println!("Request: {:#?}", request);
+    println!("Response: {:#?}", response);
 }
